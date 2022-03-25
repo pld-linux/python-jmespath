@@ -9,7 +9,7 @@ Summary:	JSON Matching Expressions
 Summary(pl.UTF-8):	JSON Matching Expressions - wyrażenia dopasowujące JSON
 Name:		python-%{pypi_name}
 Version:	0.10.0
-Release:	3
+Release:	4
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/jmespath/
