@@ -8,6 +8,7 @@
 Summary:	JSON Matching Expressions
 Summary(pl.UTF-8):	JSON Matching Expressions - wyrażenia dopasowujące JSON
 Name:		python-%{pypi_name}
+# keep 0.x here for python2 support
 Version:	0.10.0
 Release:	6
 License:	MIT
