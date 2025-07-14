@@ -10,7 +10,7 @@ Summary(pl.UTF-8):	JSON Matching Expressions - wyrażenia dopasowujące JSON
 Name:		python-%{pypi_name}
 # keep 0.x here for python2 support
 Version:	0.10.0
-Release:	8
+Release:	9
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/jmespath/
@@ -51,6 +51,7 @@ Summary:	JSON Matching Expressions
 Summary(pl.UTF-8):	JSON Matching Expressions - wyrażenia dopasowujące JSON
 Group:		Libraries/Python
 Requires:	python3-modules >= 1:3.3
+Conflicts:	python-jmespath < 0.10.0-9
 
 %description -n python3-%{pypi_name}
 JMESPath allows you to declaratively specify how to extract elements
@@ -85,17 +86,17 @@ nosetests-%{py3_ver}
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%if %{with python3}
-%py3_install
-
-%{__mv} $RPM_BUILD_ROOT%{_bindir}/jp.py $RPM_BUILD_ROOT%{_bindir}/jp.py-3
-%endif
-
 %if %{with python2}
 %py_install
 
 %{__mv} $RPM_BUILD_ROOT%{_bindir}/jp.py $RPM_BUILD_ROOT%{_bindir}/jp.py-2
-ln -sf jp.py-2 $RPM_BUILD_ROOT%{_bindir}/jp.py
+%endif
+
+%if %{with python3}
+%py3_install
+
+%{__mv} $RPM_BUILD_ROOT%{_bindir}/jp.py $RPM_BUILD_ROOT%{_bindir}/jp.py-3
+ln -sf jp.py-3 $RPM_BUILD_ROOT%{_bindir}/jp.py
 %endif
 
 %clean
@@ -105,7 +106,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc LICENSE.txt README.rst
-%attr(755,root,root) %{_bindir}/jp.py
 %attr(755,root,root) %{_bindir}/jp.py-2
 %{py_sitescriptdir}/jmespath
 %{py_sitescriptdir}/jmespath-%{version}-py%{py_ver}.egg-info
@@ -115,6 +115,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n python3-%{pypi_name}
 %defattr(644,root,root,755)
 %doc LICENSE.txt README.rst
+%attr(755,root,root) %{_bindir}/jp.py
 %attr(755,root,root) %{_bindir}/jp.py-3
 %{py3_sitescriptdir}/jmespath
 %{py3_sitescriptdir}/jmespath-%{version}-py%{py3_ver}.egg-info
